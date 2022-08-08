@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="IV_cancel">Cancel</string>
+    <string name="IV_ok">Ok</string>
+    <string name="IV_enter_PIN">Enter your PIN to continue</string>
+    <string name="IV_setPIN">Set PIN</string>
+    <string name="IV_verifyPIN">Verify PIN</string>  
+    <string name="IV_confirmPIN">Confirm PIN</string>
+    <string name="fingerprint_cancel">Cancel</string>
+    <string name="fingerprint_use_backup">Use backup</string>
+    <string name="fingerprint_auth_dialog_title">Fingerprint Authentication</string>
+    <string name="fingerprint_ok">Ok</string>
+    <string name="fingerprint_description">Confirm fingerprint to continue</string>
+    <string name="fingerprint_hint">Touch sensor</string>
+    <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again.</string>
+    <string name="fingerprint_success">Fingerprint recognized</string>
+    <string name="new_fingerprint_enrolled_description">A new fingerprint was added to this device, so your password is required.</string>
+    <string name="secure_lock_screen_required">Secure lock screen required!</string>                  
+</resources>

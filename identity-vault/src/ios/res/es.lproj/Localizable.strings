@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  auth-play2
+
+  Created by Mano on 15/3/19.
+  
+*/
+"SetPIN" = "Establecer PIN";
+"VerifyPIN" = "Verificar PIN";
+"PePtc" = "Por favor, introduzca PIN para continuar";
+"OK" = "Aceptar";
+"Cancel" = "Cancelar";

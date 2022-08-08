@@ -1,0 +1,89 @@
+{
+  "name": "@ionic-enterprise/identity-vault",
+  "version": "4.2.1",
+  "description": "Ionic Identity Vault Plugin",
+  "author": "Ionic Team <hi@ionic.io> (https://ionicframework.com) ",
+  "license": "SEE LICENSE",
+  "cordova": {
+    "id": "@ionic-enterprise/identity-vault",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "scripts": {
+    "build": "npm run clean && npm run transpile && npm run rollup && npm run minify",
+    "clean": "rimraf dist",
+    "minify": "uglifyjs --mangle --compress --source-map \"content='dist/ionic-enterprise-identity-vault.js.map',url='ionic-enterprise-identity-vault.js.map'\" --comments '/^/*!/' --output dist/ionic-enterprise-identity-vault.js dist/ionic-enterprise-identity-vault.js",
+    "prepublishOnly": "npm run build",
+    "rollup": "rollup --config rollup.config.js",
+    "transpile": "tsc --module ES2015 --target ES5 --outDir dist/esm",
+    "docs": "./scripts/docs.sh",
+    "release": "standard-version -a",
+    "pre-release": "standard-version -a -p --skip.changelog=true --skip.tag=true",
+    "test": "echo no tests yet"
+  },
+  "standard-version": {
+    "scripts": {
+      "postbump": "sync-cordova-xml2 package.json plugin.xml --output=plugin.xml && git add plugin.xml",
+      "postchangelog": "./scripts/changelog-replace.sh && npm run docs && git add docs"
+    }
+  },
+  "main": "dist/esm/index.js",
+  "typings": "dist/esm/index.d.ts",
+  "devDependencies": {
+    "@ionic/typedoc-plugin-markdown": "^2.0.0",
+    "conventional-changelog": "^3.1.4",
+    "replace": "^1.1.0",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.52.0",
+    "rollup-plugin-node-resolve": "^3.0.3",
+    "standard-version": "^5.0.2",
+    "sync-cordova-xml2": "^0.0.3",
+    "tslint": "^5.6.0",
+    "tslint-ionic-rules": "0.0.8",
+    "typedoc": "^0.15.0",
+    "typescript": "^2.6.2",
+    "uglify-js": "^3.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/enterprise-auth.git"
+  },
+  "bugs": {
+    "url": "https://ionic.zendesk.com/hc/en-us"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://registry.npmjs.org"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova-android": ">=6.3.0"
+      },
+      "4.0.0": {
+        "cordova-android": ">=9.0.0-dev"
+      },
+      "5.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testMatch": [
+      "**/__test__/*.(ts|tsx|js)"
+    ]
+  },
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

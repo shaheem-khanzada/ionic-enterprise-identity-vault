@@ -1,0 +1,28 @@
+repositories{
+  jcenter()
+  flatDir {
+      dirs 'libs'
+   }
+}
+
+dependencies {
+   api 'com.bottlerocketstudios:vault:1.4.2'
+   implementation 'android.arch.lifecycle:extensions:1.1.1'
+   implementation "androidx.biometric:biometric:1.0.1"
+}
+
+android {
+  packagingOptions {
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+  }
+}
+
+ext.postBuildExtras = {
+    android {
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
+}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="@ionic-enterprise/identity-vault" version="4.2.1">
+    <name>@ionic-enterprise/identity-vault</name>
+    <description>Ionic Identity Vault Plugin</description>
+    <license>SEE LICENSE</license>
+    <keywords>Ionic,auth,biometrics,touchid,faceid</keywords>
+    <repo>git+https://github.com/ionic-team/enterprise-auth.git</repo>
+    <issue>https://ionic.zendesk.com/hc/en-us</issue>
+    <js-module src="www/ionicnativeauth.js" name="ionicnativeauth">
+        <runs/>
+        <clobbers target="IonicNativeAuth"/>
+    </js-module>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="IonicNativeAuth">
+                <param name="android-package" value="com.ionicframework.auth.IonicNativeAuth"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+            <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.ionicframework.auth.BiometricActivity" android:theme="@style/Transparent"/>
+        </config-file>
+        <framework src="src/android/ionicnativeauth.gradle" custom="true" type="gradleReference"/>
+        <source-file src="src/android/com/ionicframework/auth/IonicNativeAuth.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/AuthConfig.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/AuthPINDialog.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/BiometricActivity.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/IdentityVault.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/IonicCombinedVault.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/IonicKeyStorage.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/IonicKeychainAuthenticatedStorage.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/IonicMemoryOnlyKeyStorage.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/IonicSharedPreferenceVault.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/IonicStateVault.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/IonicVault.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/VaultAppConfig.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/VaultDescriptor.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/VaultErrors.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/VaultFactory.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/com/ionicframework/auth/VaultState.java" target-dir="src/com/ionicframework/auth"/>
+        <source-file src="src/android/res/drawable/ic_fingerprint_error.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_fingerprint_success.xml" target-dir="res/drawable"/>
+        <resource-file src="src/android/res/drawable-hdpi/ic_fp_40px.png" target="res/drawable-hdpi/ic_fp_40px.png"/>
+        <resource-file src="src/android/res/drawable-mdpi/ic_fp_40px.png" target="res/drawable-mdpi/ic_fp_40px.png"/>
+        <resource-file src="src/android/res/drawable-xhdpi/ic_fp_40px.png" target="res/drawable-xhdpi/ic_fp_40px.png"/>
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_fp_40px.png" target="res/drawable-xxhdpi/ic_fp_40px.png"/>
+        <resource-file src="src/android/res/drawable-xxxhdpi/ic_fp_40px.png" target="res/drawable-xxxhdpi/ic_fp_40px.png"/>
+        <source-file src="src/android/res/layout/fingerprint_dialog_container.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/fingerprint_dialog_content.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/values/IV-colors.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values/IV-strings.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values/IV-styles.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values-es/IV-strings.xml" target-dir="res/values-es"/>
+    </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="IonicNativeAuth">
+                <param name="ios-package" value="IonicNativeAuthPlugin" onload="true"/>
+            </feature>
+            <preference name="UseSwiftLanguageVersion" value="4.2"/>
+        </config-file>
+        <config-file target="*-Info.plist" parent="NSFaceIDUsageDescription">
+            <string>Use Face ID to authenticate yourself and login</string>
+        </config-file>
+        <source-file src="src/ios/IonicNativeAuth.swift"/>
+        <source-file src="src/ios/IonicNativeAuth/AuthPINDialog.swift"/>
+        <source-file src="src/ios/IonicNativeAuth/Biometrics.swift"/>
+        <header-file src="src/ios/IonicNativeAuth/Crypto-Bridging-Header.h"/>
+        <source-file src="src/ios/IonicNativeAuth/IdentityVault.swift"/>
+        <header-file src="src/ios/IonicNativeAuth/IonicNativeAuth.h"/>
+        <source-file src="src/ios/IonicNativeAuth/KeychainPasswordItem.swift"/>
+        <source-file src="src/ios/IonicNativeAuth/LockSmith.swift"/>
+        <source-file src="src/ios/IonicNativeAuth/UIColor.swift"/>
+        <source-file src="src/ios/IonicNativeAuth/UIKitLocalizedString.swift"/>
+        <source-file src="src/ios/IonicNativeAuth/VaultConfig.swift"/>
+        <source-file src="src/ios/IonicNativeAuth/VaultErrors.swift"/>
+        <source-file src="src/ios/IonicNativeAuth/VaultKeychainContainer.swift"/>
+        <source-file src="src/ios/res/en.lproj/Localizable.strings" target-dir="en.lproj"/>
+        <source-file src="src/ios/res/es.lproj/Localizable.strings" target-dir="es.lproj"/>
+        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+    </platform>
+    <author email="hi@ionic.io" href="https://ionicframework.com">Ionic Team</author>
+</plugin>
